@@ -1,9 +1,12 @@
 package utils
 
-import "regexp"
+import (
+	"fmt"
+	"regexp"
+)
 
 // 邮政编码校验
-func CheckPostcode(code string) bool {
+func CheckPostcode[T comparable](code T) bool {
 	reg := `^\d{6}$`
-	return regexp.MustCompile(reg).MatchString(code)
+	return regexp.MustCompile(reg).MatchString(fmt.Sprintf("%v", code))
 }
